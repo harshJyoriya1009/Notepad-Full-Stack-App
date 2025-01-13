@@ -4,14 +4,11 @@ const URL = "mongodb+srv://harshjyoriya:harsh789456123@cluster0.gikk3.mongodb.ne
 
 const connectToMongo = async () => {
   try {
-    await mongoose.connect(URL, {
-      useNewUrlParser: true, 
-      useUnifiedTopology: true
-    });
-    console.log("Connected to MongoDB successfully!");
+    await mongoose.connect(URL);
+    console.log("Connected to MongoDB!");
   } catch (error) {
-    console.error("Error connecting to MongoDB:", error);
+    console.error("MongoDB connection error:", error);
   }
-}
+};
 
 module.exports = connectToMongo;
