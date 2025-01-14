@@ -4,10 +4,11 @@ const User=require('../models/User');
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const userfetch = require('../middleware/userfetch');
 
 const JWT_SECURE="MyNameIsHarsh@1";
 
-//Create a User using: POST "/api/auth/createuser". No LOgin required 
+//Routes:1 -Create a User using: POST "/api/auth/createuser". No LOgin required 
 router.post('/createuser',[
      check('name').isLength({min:3}).withMessage('Name must be at least 3 characters long'),
      check('email').isEmail().withMessage('Please provide a valid email'),
@@ -55,7 +56,7 @@ router.post('/createuser',[
 })
 
 
-//Authenticate the User using: POST "/api/auth/login" .
+//Routes:2 -Authenticate the User using: POST "/api/auth/login" .
 
 router.post('/login',[
     check('email').isEmail().withMessage('Please provide a valid email'),
@@ -85,8 +86,8 @@ router.post('/login',[
                 id:user.id
             }
         }
-        const jwtData= jwt.sign(data, JWT_SECURE);
-        res.json({jwtData})
+        const authtoken= jwt.sign(data, JWT_SECURE);
+        res.json({authtoken})
 
      } catch (error) {
          console.error(error.message); 
@@ -95,5 +96,25 @@ router.post('/login',[
  
 
 })
+
+//Routes:3 -Get login User all detail using: POST "/api/auth/userdetail" . Login required
+router.post('/userdetail', userfetch
+    , async (req, res)=>{
+
+    try {
+        userId= req.user.id;
+        const user= await User.findById(userId).select("-password")
+        res.send(user)
+        
+    } catch (error) {
+        console.error(error.message); 
+   res.status(500).send("Internal error")    
+    }
+
+
+})
+
+
+
 
 module.exports=router;
