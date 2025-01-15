@@ -12,7 +12,7 @@ const JWT_SECURE="MyNameIsHarsh@1";
 router.post('/createuser',[
      check('name').isLength({min:3}).withMessage('Name must be at least 3 characters long'),
      check('email').isEmail().withMessage('Please provide a valid email'),
-     check('password').isLength({min:5}).withMessage('Password must be at least 3 characters long'),
+     check('password').isLength({min:5}).withMessage('Password must be at least 5 characters long'),
     ], async (req, res)=>{
         
         //If there are errors, return what request and the error 
