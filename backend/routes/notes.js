@@ -26,7 +26,7 @@ router.post('/addnotes', userfetch, [
 
     try {
         
-    const{title, description, tag}= req.body;
+    const{heading, description, tag}= req.body;
 
    //If there are errors, return what request and the error 
    const errors=validationResult(req);
@@ -35,7 +35,7 @@ router.post('/addnotes', userfetch, [
    }
 
    const note = new Notes({
-    title, description, tag, user:req.user.id
+    heading, description, tag, user:req.user.id
    })
    const noteSave= await note.save()
    res.json(noteSave)
@@ -44,6 +44,32 @@ router.post('/addnotes', userfetch, [
     console.error(error.message);
     res.status(500).send("Internal error") 
    }
+})
+
+//Routes:3 -Update a existing notes using: Post "/api/auth/updatenote". No LOgin required 
+router.put('/updatenote/:id', userfetch ,async(req, res)=>{
+
+    const{heading, description, tag}= req.body;
+
+    // Create a newNote object
+    const newNote ={};
+    if(heading){newNote.heading=heading};
+    if(description){newNote.description=description};
+    if(tag){newNote.tag=tag};
+
+    //Find the note to be updated and update it
+    let note= await Notes.findById(req.params.id);
+    if(!note){
+        return res.status(404).send("Not Found")
+    }
+
+    if(note.user.toString() !== req.user.id){
+        return res.status(401).send("Not allowed")
+    }
+
+    note = await Notes.findByIdAndUpdate(req.params.id, {$set: newNote}, {new:true});
+    res.json({note});
+
 })
 
 module.exports=router;
