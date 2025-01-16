@@ -3,8 +3,8 @@ import React from 'react'
 const Alert = (props) => {
   return (
     <div>
-      <div class="alert alert-secondary" role="alert">
-   {props.message}
+      <div className="alert alert-secondary" role="alert">
+      {props.message}
 </div>
     </div>
   )
