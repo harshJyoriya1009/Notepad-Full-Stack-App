@@ -7,9 +7,11 @@ import {
 import Navbar from './component/Navbar';
 import Home from './component/Home';
 import About from './component/About';
+import NoteState from './context/notes/NoteState';
 
 function App() {
   return (
+    <NoteState>
     <Router>
       <Navbar />
       <Routes>
@@ -17,6 +19,7 @@ function App() {
         <Route excat path="/about" element={<About />} />
       </Routes>
     </Router>
+    </NoteState>
   );
 }
 
