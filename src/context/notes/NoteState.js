@@ -5,7 +5,7 @@ const NoteState=(props)=>{
    const notesIntial= [
    
     {
-      "_id": "6787c0a12d6cebee49fadbf5",
+      "_id": "6787c0a12d56cebee49fadbf5",
       "user": "6786674a53f3a6792801fda1",
       "heading": "Hello word",
       "description": "Nothing new my ",
@@ -14,7 +14,7 @@ const NoteState=(props)=>{
       "__v": 0
     },
     {
-      "_id": "6787c25acd7d400c5e878fac",
+      "_id": "6787c25acd72d400c5e878fac",
       "user": "6786674a53f3a6792801fda1",
       "heading": "my word",
       "description": "Nothing new my ",
@@ -23,7 +23,7 @@ const NoteState=(props)=>{
       "__v": 0
     },
     {
-        "_id": "6787c0a12d6cebee49fadbf5",
+        "_id": "6787c0a12d566cebee49fadbf5",
         "user": "6786674a53f3a6792801fda1",
         "heading": "Hello word",
         "description": "Nothing new my ",
@@ -32,7 +32,7 @@ const NoteState=(props)=>{
         "__v": 0
       },
       {
-        "_id": "6787c0a12d6cebee49fadbf5",
+        "_id": "6787c0a12d6c98ebee49fadbf5",
         "user": "6786674a53f3a6792801fda1",
         "heading": "Hello word",
         "description": "Nothing new my ",
@@ -41,7 +41,7 @@ const NoteState=(props)=>{
         "__v": 0
       },
       {
-        "_id": "6787c0a12d6cebee49fadbf5",
+        "_id": "6787c0a12d6ceb76ee49fadbf5",
         "user": "6786674a53f3a6792801fda1",
         "heading": "Hello word",
         "description": "Nothing new my ",
@@ -50,7 +50,7 @@ const NoteState=(props)=>{
         "__v": 0
       },
       {
-        "_id": "6787c0a12d6cebee49fadbf5",
+        "_id": "6787c0a12d6cebee0949fadbf5",
         "user": "6786674a53f3a6792801fda1",
         "heading": "Hello word",
         "description": "Nothing new my ",

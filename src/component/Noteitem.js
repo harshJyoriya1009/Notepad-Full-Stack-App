@@ -8,7 +8,9 @@ const Noteitem = (props) => {
         <div className="card my-3">
   <div className="card-body">
     <h5 className="card-title"> {note.heading}</h5>
-    <p className="card-text"> {note.description} Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit ipsum possimus tempore perspiciatis dolor explicabo voluptas architecto ex? Quos quasi inventore modi. Quasi accusamus nulla voluptas minima quos obcaecati aliquam.</p>
+    <p className="card-text"> {note.description} Lorem ipsum dolor sit, amet consectetur adipisicing elit.tas minima quos obcaecati aliquam.</p>
+    <i className="fa-solid fa-trash-can mx-2"></i>
+    <i className="fa-regular fa-pen-to-square mx-2"></i>
   </div>
 </div>
       
