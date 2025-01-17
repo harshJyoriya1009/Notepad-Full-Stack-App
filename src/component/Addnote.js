@@ -14,8 +14,8 @@ const Addnote = () => {
 
     const onChange=(e)=>{
         setNote({...note, [e.target.name]:e.target.value})
-
     }
+    
   return (
     <div className="container my-4">
     <h3>Add Notes</h3>
