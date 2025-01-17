@@ -32,7 +32,7 @@ const Addnote = () => {
     <input type="checkbox" className="form-check-input" id="tag" name='tag'/>
     <label className="form-check-label" htmlFor="tag">Tag</label>
   </div>
-  <button type="submit" className="btn btn-primary" onClick={handleClick}>Submit</button>
+  <button type="submit" className="btn btn-primary" onClick={handleClick}>Add Note</button>
 </form>
     </div>
   )

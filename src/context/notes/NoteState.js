@@ -13,14 +13,41 @@ const NoteState=(props)=>{
         "__v": 0
       },
       {
-        "_id": "6787c0a12d6cebee0949fadbf5",
+        "_id": "6787c0a12d4587116cebee0949fadbf5",
         "user": "6786674a53f3a6792801fda1",
         "heading": "Hello word",
         "description": "Nothing new my ",
         "tag": "Normal",
         "date": "2025-01-15T14:05:21.058Z",
         "__v": 0
-      }
+      },
+      {
+        "_id": "6787c0a18787542d6cebee0949fadbf5",
+        "user": "6786674a53f3a6792801fda1",
+        "heading": "Hello word",
+        "description": "Nothing new my ",
+        "tag": "Normal",
+        "date": "2025-01-15T14:05:21.058Z",
+        "__v": 0
+      },
+      {
+        "_id": "6787c0a12d6ce753852bee0949fadbf5",
+        "user": "6786674a53f3a6792801fda1",
+        "heading": "Hello word",
+        "description": "Nothing new my ",
+        "tag": "Normal",
+        "date": "2025-01-15T14:05:21.058Z",
+        "__v": 0
+      },
+      {
+        "_id": "6787c0a12456987d6cebee0949fadbf5",
+        "user": "6786674a53f3a6792801fda1",
+        "heading": "Hello word",
+        "description": "Nothing new my ",
+        "tag": "Normal",
+        "date": "2025-01-15T14:05:21.058Z",
+        "__v": 0
+      },
     
    
   ]
@@ -44,7 +71,10 @@ const NoteState=(props)=>{
   }
 
   //Delete Note
-  const deleteNote=()=>{
+  const deleteNote=(id)=>{
+    console.log("Deleting the note with id" + id)
+    const setNote= notes.filter((note)=>{return note._id!==id})
+    setnotes(setNote);
 
   }
 
