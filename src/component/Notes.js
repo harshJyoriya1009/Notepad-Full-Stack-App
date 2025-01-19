@@ -50,11 +50,11 @@ const Notes = () => {
       <form>
   <div className="mb-3">
     <label htmlFor="heading" className="form-label">Heading</label>
-    <input type="text" className="form-control" id="eheading" name='eheading' value={note.eheading} aria-describedby="emailHelp" onChange={onChange}/>
+    <input type="text" className="form-control" id="eheading" name='eheading' value={note.eheading} aria-describedby="emailHelp" onChange={onChange} minLength={5} required/>
   </div>
   <div className="mb-3">
     <label htmlFor="description" className="form-label">Description</label>
-    <input type="text" className="form-control" id="edescription" name='edescription' value={note.edescription} onChange={onChange}/>
+    <input type="text" className="form-control" id="edescription" name='edescription' value={note.edescription} onChange={onChange} minLength={5} required/>
   </div>
   <div className="mb-3">
     <label htmlFor="tag" className="form-label">Tag</label>
@@ -65,7 +65,7 @@ const Notes = () => {
 
       <div className="modal-footer">
         <button ref={refCls} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button onClick={handleClick} type="button" className="btn btn-primary">Save changes</button>
+        <button disabled={note.edescription.length<5} onClick={handleClick} type="button" className="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -73,6 +73,10 @@ const Notes = () => {
 
    <div className="row my-3">
     <h3>Your notes</h3>
+    <div className="container mx-3">
+      <h5>
+    {notes.length===0 && "NO NOTES"}</h5>
+    </div>
     {notes.map((note)=>{
       return <Noteitem key={note._id} updateNote={updateNote} note={note}/>
     })}
