@@ -63,6 +63,8 @@ router.post('/login',[
     check('password').isLength({min:5}).withMessage('Password cannot be blank').exists()
 ], async (req, res)=>{
 
+    let success=false;
+    
      //If there are errors, return what request and the error 
      const errors=validationResult(req);
      if(!errors.isEmpty()){
@@ -78,7 +80,8 @@ router.post('/login',[
         }
         const passwordCompare= await bcrypt.compare(password, user.password)
         if(!passwordCompare){
-            return res.status(400).json({error: "Password Incorrect"});
+            success= false;
+            return res.status(400).json({ success, error: "Password Incorrect"});
 
         }
         const data={
@@ -87,7 +90,8 @@ router.post('/login',[
             }
         }
         const authtoken= jwt.sign(data, JWT_SECURE);
-        res.json({authtoken})
+        success= true;
+        res.json({success, authtoken})
 
      } catch (error) {
          console.error(error.message); 
