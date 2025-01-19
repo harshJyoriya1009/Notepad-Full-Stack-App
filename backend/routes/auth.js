@@ -118,10 +118,6 @@ router.post('/userdetail', userfetch
    res.status(500).send("Internal error")    
     }
 
-
 })
-
-
-
 
 module.exports=router;
