@@ -48,7 +48,7 @@ const Notes = (props) => {
       <div className="modal-body">
 {/* my Edit form */}
       <form>
-  <div className="mb-3">
+  <div className="mb-3 ">
     <label htmlFor="heading" className="form-label">Heading</label>
     <input type="text" className="form-control" id="eheading" name='eheading' value={note.eheading} aria-describedby="emailHelp" onChange={onChange} minLength={5} required/>
   </div>

@@ -34,7 +34,7 @@ const onChange=(e)=>{
 
   return (
    <>
-    <div className="container" style={{width: "40rem"}}>
+    <div className="container my-5" style={{width: "40rem"}}>
    <form onSubmit={handleOnSubmit}>
   <div className="mb-3">
     <label htmlFor="name" className="form-label">Enter your Full Name</label>

@@ -32,7 +32,7 @@ const onChange=(e)=>{
 
   return (
     <>
-    <div className="container" style={{width: "40rem"}}>
+    <div className="container mb-4" style={{width: "40rem"}}>
     <form onSubmit={handleOnSubmit}>
   <div className="mb-3">
     <label htmlFor="email" className="form-label">Email address</label>

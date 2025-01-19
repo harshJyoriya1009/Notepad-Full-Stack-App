@@ -25,7 +25,7 @@ const Addnote = (props) => {
     <form>
   <div className="mb-3">
     <label htmlFor="heading" className="form-label">Heading</label>
-    <input type="text" className="form-control" id="heading" name='heading' value={note.heading} aria-describedby="emailHelp" onChange={onChange} minLength={5} required/>
+    <input type="text" className="form-control " id="heading" name='heading' value={note.heading} aria-describedby="emailHelp" onChange={onChange} minLength={5} required/>
   </div>
   <div className="mb-3">
     <label htmlFor="description" className="form-label">Description</label>
