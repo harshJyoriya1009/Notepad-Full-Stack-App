@@ -18,7 +18,7 @@ const NoteState=(props)=>{
       },
     });
     const json= await response.json()
-    console.log(json)
+    // console.log(json)
     setnotes(json)
   }
 
@@ -62,7 +62,7 @@ const NoteState=(props)=>{
     const json= response.json()
     console.log(json)
 
-    console.log("Deleting the note with id" + id)
+    // console.log("Deleting the note with id" + id)
     const setNote= notes.filter((note)=>{return note._id!==id})
     setnotes(setNote);
 
@@ -73,24 +73,26 @@ const NoteState=(props)=>{
 
     //API call
     const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
-      method: "POST",
-      headers:{"Content-Type":"application.json",
-        "auto-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjc4NjY3NGE1M2YzYTY3OTI4MDFmZGExIn0sImlhdCI6MTczNjk0NTg2M30.DRBb5DHd9FL86Lu6xqD1bT9-tX-eJzUIaNKFM6LVm-U"
-      },
+      method: "PUT",
+      headers:{"Content-Type": "application/json",
+      "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjc4NjY3NGE1M2YzYTY3OTI4MDFmZGExIn0sImlhdCI6MTczNjk0NTg2M30.DRBb5DHd9FL86Lu6xqD1bT9-tX-eJzUIaNKFM6LVm-U"
+     },
     body :JSON.stringify({heading,description,tag})
     });
+    console.log(response)
 
+    let newNote=JSON.parse(JSON.stringify(notes))
     //Logic to edit
-    for (let i = 0; i < notes.length; i++) {
-      const element = notes[i];
+    for (let i = 0; i < newNote.length; i++) {
+      const element = newNote[i];
       if(element._id===id){
-        element.heading=heading;
-        element.description=description; 
-        element.tag=tag;
+        newNote[i].heading=heading;
+        newNote[i].description=description; 
+        newNote[i].tag=tag;
+        break;
       }
-      
     }
-
+     setnotes(newNote)
   }
 
     return (
