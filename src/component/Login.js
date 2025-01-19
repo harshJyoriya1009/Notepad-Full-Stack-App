@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = (props) => {
     const [cerend, setcerend] = useState({email:"", password:""})
     const navigate = useNavigate(); 
  
@@ -19,9 +19,10 @@ const Login = () => {
         //Save the auth and redirect
         localStorage.setItem('token', json.authtoken)
         navigate("/"); 
+        props.showAlert("Login succesfully", "success")
      
       }else{
-        alert("Invalid cerend")
+       props.showAlert("Check your detail carefully", "danger")
       }
     }
 
@@ -31,6 +32,7 @@ const onChange=(e)=>{
 
   return (
     <>
+    <div className="container" style={{width: "40rem"}}>
     <form onSubmit={handleOnSubmit}>
   <div className="mb-3">
     <label htmlFor="email" className="form-label">Email address</label>
@@ -43,6 +45,7 @@ const onChange=(e)=>{
   </div>
   <button type="submit" className="btn btn-primary" >Submit</button>
 </form>
+</div>
     </>
   )
 }
