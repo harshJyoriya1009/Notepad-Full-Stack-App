@@ -1,7 +1,7 @@
 import React,{ useState } from 'react'
 import { useNavigate } from "react-router-dom";
 
-const Signup = (props) => {
+const Signup = () => {
 
     const [cerend, setcerend] = useState({name:"", email:"", password:"", cpassword:""})
     const navigate = useNavigate(); 
@@ -21,9 +21,8 @@ const Signup = (props) => {
       if(json.success){
           localStorage.setItem('token', json.jwtData)
           navigate("/"); 
-          props.showAlert("Account created", "success")
       }else{
-        props.showAlert("Invalid detail", "danger")
+        alert("INVALID")
       }
       
     }
@@ -34,7 +33,7 @@ const onChange=(e)=>{
 
   return (
    <>
-    <div className="container my-5" style={{width: "40rem"}}>
+    <div className="container" style={{width: "40rem"}}>
    <form onSubmit={handleOnSubmit}>
   <div className="mb-3">
     <label htmlFor="name" className="form-label">Enter your Full Name</label>

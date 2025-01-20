@@ -2,19 +2,12 @@ import React , {useContext,useState, useEffect, useRef} from 'react'
 import NoteContext from '../context/notes/NoteContext';
 import Noteitem from './Noteitem';
 import Addnote from './Addnote';
-import { useNavigate } from "react-router-dom";
 
-const Notes = (props) => {
+const Notes = () => {
     const context= useContext(NoteContext);
     const{notes,getNote,editNote}=context;
-    let navigate = useNavigate();
     useEffect(() => {
-      if(localStorage.getItem('token')){
-        getNote();
-
-      }else{
-      navigate('/login')
-      }
+      getNote();
       // eslint-disable-next-line
     }, [])
 
@@ -25,13 +18,13 @@ const Notes = (props) => {
     const updateNote=(currNote)=>{
     ref.current.click();
     setNote({id:currNote._id, eheading:currNote.heading, edescription:currNote.description, etag:currNote.tag})
-  }
-  
-  const handleClick=(e)=>{
-    // console.log("Update change", note)
-    editNote(note.id, note.eheading, note.edescription, note.etag)
-    refCls.current.click();
-    props.showAlert("Edit Successfully", "success")
+    }
+
+    
+    const handleClick=(e)=>{
+      // console.log("Update change", note)
+      editNote(note.id, note.eheading, note.edescription, note.etag)
+      refCls.current.click();
     }
 
     const onChange=(e)=>{
@@ -40,7 +33,7 @@ const Notes = (props) => {
     
   return (
    <>
-     <Addnote showAlert={props.showAlert}/>
+     <Addnote/>
 <button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Launch demo modal
 </button>
@@ -55,7 +48,7 @@ const Notes = (props) => {
       <div className="modal-body">
 {/* my Edit form */}
       <form>
-  <div className="mb-3 ">
+  <div className="mb-3">
     <label htmlFor="heading" className="form-label">Heading</label>
     <input type="text" className="form-control" id="eheading" name='eheading' value={note.eheading} aria-describedby="emailHelp" onChange={onChange} minLength={5} required/>
   </div>
@@ -80,17 +73,13 @@ const Notes = (props) => {
 
    <div className="row my-3">
     <h3>Your notes</h3>
-    {/* <div className="container mx-3"> */}
-      {/* <h5> */}
-    {/* {notes.length===0 && "NO NOTES"}</h5> */}
-    {/* </div> */}
-    {Array.isArray(notes) && notes.length > 0 ? (
-  notes.map((note) => {
-    return <Noteitem key={note._id} updateNote={updateNote} showAlert={props.showAlert} note={note} />;
-  })
-) : (
-  <div>No notes available</div>
-)}
+    <div className="container mx-3">
+      <h5>
+    {notes.length===0 && "NO NOTES"}</h5>
+    </div>
+    {notes.map((note)=>{
+      return <Noteitem key={note._id} updateNote={updateNote} note={note}/>
+    })}
     </div>
 
    </>
