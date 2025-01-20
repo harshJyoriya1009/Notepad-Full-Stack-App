@@ -2,12 +2,20 @@ import React , {useContext,useState, useEffect, useRef} from 'react'
 import NoteContext from '../context/notes/NoteContext';
 import Noteitem from './Noteitem';
 import Addnote from './Addnote';
+import { useNavigate } from "react-router-dom";
 
-const Notes = () => {
+const Notes = (props) => {
     const context= useContext(NoteContext);
+    let navigate=useNavigate();
     const{notes,getNote,editNote}=context;
     useEffect(() => {
-      getNote();
+      if(localStorage.getItem('token')){
+
+        getNote();
+      }else{
+
+        navigate('/login')
+      }
       // eslint-disable-next-line
     }, [])
 
@@ -18,13 +26,13 @@ const Notes = () => {
     const updateNote=(currNote)=>{
     ref.current.click();
     setNote({id:currNote._id, eheading:currNote.heading, edescription:currNote.description, etag:currNote.tag})
-    }
-
-    
-    const handleClick=(e)=>{
-      // console.log("Update change", note)
-      editNote(note.id, note.eheading, note.edescription, note.etag)
-      refCls.current.click();
+  }
+  
+  const handleClick=(e)=>{
+    // console.log("Update change", note)
+    editNote(note.id, note.eheading, note.edescription, note.etag)
+    refCls.current.click();
+    props.showAlert("Edit Successfully", "success")
     }
 
     const onChange=(e)=>{
@@ -33,7 +41,7 @@ const Notes = () => {
     
   return (
    <>
-     <Addnote/>
+     <Addnote showAlert={props.showAlert}/>
 <button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Launch demo modal
 </button>
@@ -48,7 +56,7 @@ const Notes = () => {
       <div className="modal-body">
 {/* my Edit form */}
       <form>
-  <div className="mb-3">
+  <div className="mb-3 ">
     <label htmlFor="heading" className="form-label">Heading</label>
     <input type="text" className="form-control" id="eheading" name='eheading' value={note.eheading} aria-describedby="emailHelp" onChange={onChange} minLength={5} required/>
   </div>

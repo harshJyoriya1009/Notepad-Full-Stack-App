@@ -19,7 +19,7 @@ const Signup = () => {
       console.log(json);
 
       if(json.success){
-          localStorage.setItem('token', json.jwtData)
+          localStorage.setItem('token', json.authtoken)
           navigate("/"); 
       }else{
         alert("INVALID")
